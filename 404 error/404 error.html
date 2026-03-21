@@ -12,6 +12,9 @@
       --ink: #12100d;
       --muted: #4d4842;
       --giant: #b3a28e;
+      --character-width: min(500px, 66vw);
+      --character-top: clamp(98px, 14vh, 136px);
+      --digit-gap: clamp(12px, 1.4vw, 24px);
       --btn-dark: #24211d;
       --btn-green-top: #9ebd73;
       --btn-green-bottom: #789851;
@@ -124,7 +127,7 @@
 
     .digit {
       position: absolute;
-      top: clamp(108px, 15vh, 146px);
+      top: var(--character-top);
       font-size: clamp(11rem, 34vw, 33rem);
       line-height: 0.82;
       font-weight: 800;
@@ -136,18 +139,19 @@
     }
 
     .digit.left {
-      left: clamp(-10px, 1.6vw, 16px);
+      left: calc(50% - (var(--character-width) / 2) - var(--digit-gap));
+      transform: translateX(-100%);
     }
 
     .digit.right {
-      right: clamp(-10px, 1.6vw, 16px);
+      left: calc(50% + (var(--character-width) / 2) + var(--digit-gap));
     }
 
     .character-wrap {
       position: absolute;
-      top: clamp(98px, 14vh, 136px);
+      top: var(--character-top);
       z-index: 3;
-      width: min(500px, 66vw);
+      width: var(--character-width);
       pointer-events: none;
       animation: character-float 4.8s ease-in-out infinite;
     }
@@ -235,6 +239,11 @@
     }
 
     @media (max-width: 980px) {
+      :root {
+        --character-width: min(450px, 82vw);
+        --digit-gap: clamp(10px, 1.2vw, 18px);
+      }
+
       .page {
         width: min(760px, 95vw);
       }
@@ -253,16 +262,18 @@
         order: 2;
       }
 
-      .character-wrap {
-        width: min(450px, 82vw);
-      }
-
       .copy {
         margin-top: clamp(338px, 56vh, 455px);
       }
     }
 
     @media (max-width: 640px) {
+      :root {
+        --character-width: min(410px, 94vw);
+        --character-top: clamp(126px, 22vh, 196px);
+        --digit-gap: clamp(6px, 1vw, 12px);
+      }
+
       .page {
         padding-top: 14px;
       }
@@ -281,13 +292,7 @@
       }
 
       .digit {
-        top: clamp(130px, 23vh, 190px);
         font-size: clamp(8.4rem, 44vw, 15rem);
-      }
-
-      .character-wrap {
-        top: clamp(126px, 22vh, 196px);
-        width: min(410px, 94vw);
       }
 
       .copy {
