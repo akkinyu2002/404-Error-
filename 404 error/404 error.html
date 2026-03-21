@@ -12,9 +12,10 @@
       --ink: #12100d;
       --muted: #4d4842;
       --giant: #b3a28e;
-      --character-width: min(500px, 66vw);
-      --character-top: clamp(98px, 14vh, 136px);
+      --character-width: min(460px, 60vw);
+      --character-top: clamp(84px, 12vh, 118px);
       --digit-gap: clamp(2px, 0.5vw, 10px);
+      --copy-top: clamp(350px, 51vh, 455px);
       --btn-dark: #24211d;
       --btn-green-top: #9ebd73;
       --btn-green-bottom: #789851;
@@ -153,7 +154,9 @@
       z-index: 3;
       width: var(--character-width);
       pointer-events: none;
-      animation: character-float 4.8s ease-in-out infinite;
+      animation:
+        character-pop-in 620ms cubic-bezier(0.22, 1, 0.36, 1) both,
+        character-float 4.8s ease-in-out 620ms infinite;
     }
 
     .character {
@@ -163,13 +166,14 @@
       user-select: none;
       -webkit-user-drag: none;
       filter: drop-shadow(0 12px 16px rgba(0, 0, 0, 0.14));
+      animation: character-breathe 3.6s ease-in-out infinite;
     }
 
     .copy {
       position: relative;
       z-index: 4;
       text-align: center;
-      margin-top: clamp(400px, 58vh, 520px);
+      margin-top: var(--copy-top);
       padding: 0 14px 28px;
     }
 
@@ -238,10 +242,33 @@
       }
     }
 
+    @keyframes character-pop-in {
+      0% {
+        opacity: 0;
+        transform: translateY(10px) scale(0.985);
+      }
+      100% {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+      }
+    }
+
+    @keyframes character-breathe {
+      0%,
+      100% {
+        transform: scale(1);
+      }
+      50% {
+        transform: scale(1.012);
+      }
+    }
+
     @media (max-width: 980px) {
       :root {
-        --character-width: min(450px, 82vw);
+        --character-width: min(420px, 78vw);
+        --character-top: clamp(88px, 12vh, 118px);
         --digit-gap: clamp(2px, 0.4vw, 8px);
+        --copy-top: clamp(300px, 50vh, 385px);
       }
 
       .page {
@@ -262,16 +289,14 @@
         order: 2;
       }
 
-      .copy {
-        margin-top: clamp(338px, 56vh, 455px);
-      }
     }
 
     @media (max-width: 640px) {
       :root {
-        --character-width: min(410px, 94vw);
-        --character-top: clamp(126px, 22vh, 196px);
+        --character-width: min(350px, 84vw);
+        --character-top: clamp(104px, 18vh, 152px);
         --digit-gap: clamp(0px, 0.4vw, 6px);
+        --copy-top: clamp(250px, 48vh, 320px);
       }
 
       .page {
@@ -295,8 +320,13 @@
         font-size: clamp(8.4rem, 44vw, 15rem);
       }
 
-      .copy {
-        margin-top: clamp(300px, 62vh, 418px);
+    }
+
+    @media (max-height: 760px) and (min-width: 641px) {
+      :root {
+        --character-width: min(390px, 52vw);
+        --character-top: clamp(66px, 9vh, 92px);
+        --copy-top: clamp(260px, 44vh, 330px);
       }
     }
 
