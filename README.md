@@ -11,9 +11,4 @@ i worked on keeping it clean and simple:
 ## live demo
 https://akkinyu2002.github.io/404-Error-/
 
-## project files
-- `index.html` -> main page
-- `404.html` -> custom not found page
-- `assets/character.png` -> optimized character image
-
 you can clone it and change anything you want.
