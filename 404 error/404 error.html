@@ -1,0 +1,345 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>404 | Page Not Found</title>
+  <style>
+    @import url("https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800&display=swap");
+
+    :root {
+      --bg: #ece7df;
+      --ink: #12100d;
+      --muted: #4d4842;
+      --giant: #b3a28e;
+      --btn-dark: #24211d;
+      --btn-green-top: #9ebd73;
+      --btn-green-bottom: #789851;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    html,
+    body {
+      margin: 0;
+      width: 100%;
+      min-height: 100%;
+      background: radial-gradient(circle at 50% 80%, #f7f4ef 0 22%, var(--bg) 58%, #ded5c9 100%);
+      color: var(--ink);
+      font-family: "Outfit", "Segoe UI", sans-serif;
+      overflow: hidden;
+    }
+
+    body::before {
+      content: "";
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      background-image: radial-gradient(rgba(0, 0, 0, 0.028) 0.55px, transparent 0.55px);
+      background-size: 2px 2px;
+      opacity: 0.2;
+    }
+
+    .page {
+      width: min(1220px, 96vw);
+      min-height: 100vh;
+      margin: 0 auto;
+      display: grid;
+      grid-template-rows: auto 1fr;
+      padding-top: 22px;
+      position: relative;
+    }
+
+    .topbar {
+      display: grid;
+      grid-template-columns: auto 1fr auto;
+      align-items: center;
+      gap: 18px;
+      position: relative;
+      z-index: 5;
+    }
+
+    .logo {
+      margin: 0;
+      font-size: 2.2rem;
+      line-height: 1;
+      letter-spacing: -0.05em;
+      font-weight: 800;
+    }
+
+    .logo span {
+      font-weight: 400;
+    }
+
+    .menu {
+      justify-self: center;
+      display: flex;
+      gap: clamp(12px, 2vw, 32px);
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+
+    .menu a {
+      text-decoration: none;
+      color: #201d19;
+      font-weight: 500;
+      opacity: 0.92;
+      transition: opacity 0.14s ease;
+    }
+
+    .menu a:hover,
+    .menu a:focus-visible {
+      opacity: 0.58;
+      outline: none;
+    }
+
+    .member-btn {
+      text-decoration: none;
+      color: #f7f2ea;
+      background: var(--btn-dark);
+      border: 1px solid #3a342d;
+      border-radius: 999px;
+      padding: 11px 21px;
+      font-weight: 600;
+      box-shadow: 0 8px 16px rgba(0, 0, 0, 0.18);
+      transition: transform 0.15s ease, box-shadow 0.15s ease;
+      white-space: nowrap;
+    }
+
+    .member-btn:hover,
+    .member-btn:focus-visible {
+      transform: translateY(-1px);
+      box-shadow: 0 11px 20px rgba(0, 0, 0, 0.22);
+      outline: none;
+    }
+
+    .hero {
+      position: relative;
+      display: grid;
+      place-items: center;
+      min-height: 0;
+    }
+
+    .digit {
+      position: absolute;
+      top: clamp(108px, 15vh, 146px);
+      font-size: clamp(11rem, 34vw, 33rem);
+      line-height: 0.82;
+      font-weight: 800;
+      color: var(--giant);
+      letter-spacing: -0.06em;
+      user-select: none;
+      pointer-events: none;
+      z-index: 1;
+    }
+
+    .digit.left {
+      left: clamp(-10px, 1.6vw, 16px);
+    }
+
+    .digit.right {
+      right: clamp(-10px, 1.6vw, 16px);
+    }
+
+    .character-wrap {
+      position: absolute;
+      top: clamp(98px, 14vh, 136px);
+      z-index: 3;
+      width: min(500px, 66vw);
+      pointer-events: none;
+      animation: character-float 4.8s ease-in-out infinite;
+    }
+
+    .character {
+      width: 100%;
+      height: auto;
+      display: block;
+      user-select: none;
+      -webkit-user-drag: none;
+      filter: drop-shadow(0 12px 16px rgba(0, 0, 0, 0.14));
+    }
+
+    .copy {
+      position: relative;
+      z-index: 4;
+      text-align: center;
+      margin-top: clamp(400px, 58vh, 520px);
+      padding: 0 14px 28px;
+    }
+
+    h1 {
+      margin: 0;
+      font-size: clamp(2.25rem, 4.5vw, 3.9rem);
+      line-height: 1.05;
+      letter-spacing: -0.04em;
+      font-weight: 700;
+    }
+
+    .copy p {
+      margin: 0.5rem auto 0;
+      max-width: 56ch;
+      color: var(--muted);
+      font-size: clamp(1rem, 1.8vw, 1.23rem);
+      line-height: 1.42;
+    }
+
+    .home-btn {
+      margin-top: 15px;
+      text-decoration: none;
+      color: #f8fff4;
+      border: 1px solid #8daa66;
+      background: linear-gradient(180deg, var(--btn-green-top), var(--btn-green-bottom));
+      border-radius: 999px;
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      padding: 9px 18px 9px 11px;
+      font-size: clamp(1rem, 1.65vw, 1.25rem);
+      font-weight: 600;
+      box-shadow:
+        0 8px 16px rgba(94, 121, 59, 0.34),
+        inset 0 1px 0 rgba(255, 255, 255, 0.35);
+      transition: transform 0.15s ease, box-shadow 0.15s ease;
+    }
+
+    .home-btn:hover,
+    .home-btn:focus-visible {
+      transform: translateY(-2px);
+      box-shadow:
+        0 12px 20px rgba(94, 121, 59, 0.42),
+        inset 0 1px 0 rgba(255, 255, 255, 0.42);
+      outline: none;
+    }
+
+    .home-btn .icon {
+      width: 32px;
+      height: 32px;
+      border-radius: 50%;
+      display: grid;
+      place-items: center;
+      background: rgba(27, 24, 20, 0.52);
+      box-shadow: inset 0 1px 2px rgba(255, 255, 255, 0.23);
+      line-height: 1;
+    }
+
+    @keyframes character-float {
+      0%,
+      100% {
+        transform: translateY(0px);
+      }
+      50% {
+        transform: translateY(-4px);
+      }
+    }
+
+    @media (max-width: 980px) {
+      .page {
+        width: min(760px, 95vw);
+      }
+
+      .topbar {
+        grid-template-columns: 1fr;
+        justify-items: center;
+        gap: 12px;
+      }
+
+      .menu {
+        order: 3;
+      }
+
+      .member-btn {
+        order: 2;
+      }
+
+      .character-wrap {
+        width: min(450px, 82vw);
+      }
+
+      .copy {
+        margin-top: clamp(338px, 56vh, 455px);
+      }
+    }
+
+    @media (max-width: 640px) {
+      .page {
+        padding-top: 14px;
+      }
+
+      .logo {
+        font-size: 1.88rem;
+      }
+
+      .menu a {
+        font-size: 0.94rem;
+      }
+
+      .member-btn {
+        font-size: 0.92rem;
+        padding: 8px 15px;
+      }
+
+      .digit {
+        top: clamp(130px, 23vh, 190px);
+        font-size: clamp(8.4rem, 44vw, 15rem);
+      }
+
+      .character-wrap {
+        top: clamp(126px, 22vh, 196px);
+        width: min(410px, 94vw);
+      }
+
+      .copy {
+        margin-top: clamp(300px, 62vh, 418px);
+      }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      *,
+      *::before,
+      *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="page">
+    <header class="topbar">
+      <h2 class="logo">.<span>logo</span>.</h2>
+      <nav class="menu" aria-label="Main navigation">
+        <a href="#">Inicio</a>
+        <a href="#">Sobre nos</a>
+        <a href="#">Blog</a>
+        <a href="#">Contato</a>
+      </nav>
+      <a class="member-btn" href="#">Area de Membros</a>
+    </header>
+
+    <main class="hero">
+      <div class="digit left" aria-hidden="true">4</div>
+      <div class="digit right" aria-hidden="true">4</div>
+
+      <div class="character-wrap" aria-hidden="true">
+        <img
+          class="character"
+          src="./Untitled design (1).png"
+          alt="Confused character"
+        />
+      </div>
+
+      <section class="copy">
+        <h1>Pagina nao encontrada</h1>
+        <p>Parece que algo esta errado, estamos trabalhando nisso.</p>
+        <a class="home-btn" href="/">
+          <span class="icon" aria-hidden="true">&larr;</span>
+          Voltar ao inicio
+        </a>
+      </section>
+    </main>
+  </div>
+</body>
+</html>
