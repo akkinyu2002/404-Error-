@@ -15,6 +15,7 @@
       --character-width: min(460px, 60vw);
       --character-top: clamp(84px, 12vh, 118px);
       --digit-gap: clamp(2px, 0.5vw, 10px);
+      --digit-inset: 0px;
       --copy-top: clamp(350px, 51vh, 455px);
       --btn-dark: #24211d;
       --btn-green-top: #9ebd73;
@@ -140,12 +141,12 @@
     }
 
     .digit.left {
-      left: calc(50% - (var(--character-width) / 2) - var(--digit-gap));
+      left: calc(50% - (var(--character-width) / 2) - var(--digit-gap) + var(--digit-inset));
       transform: translateX(-100%);
     }
 
     .digit.right {
-      left: calc(50% + (var(--character-width) / 2) + var(--digit-gap));
+      left: calc(50% + (var(--character-width) / 2) + var(--digit-gap) - var(--digit-inset));
     }
 
     .character-wrap {
@@ -296,6 +297,7 @@
         --character-width: min(350px, 84vw);
         --character-top: clamp(104px, 18vh, 152px);
         --digit-gap: clamp(0px, 0.4vw, 6px);
+        --digit-inset: clamp(8px, 3vw, 14px);
         --copy-top: clamp(250px, 48vh, 320px);
       }
 
@@ -320,6 +322,27 @@
         font-size: clamp(6.8rem, 36vw, 11.5rem);
       }
 
+    }
+
+    @media (max-width: 480px) {
+      :root {
+        --digit-inset: clamp(14px, 5vw, 22px);
+      }
+
+      .digit {
+        font-size: clamp(5.3rem, 31vw, 7.6rem);
+      }
+    }
+
+    @media (max-width: 380px) {
+      :root {
+        --character-width: min(220px, 68vw);
+        --digit-inset: clamp(18px, 7vw, 26px);
+      }
+
+      .digit {
+        font-size: clamp(4.8rem, 29vw, 6.4rem);
+      }
     }
 
     @media (max-height: 760px) and (min-width: 641px) {
